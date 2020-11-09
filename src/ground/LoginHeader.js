@@ -15,7 +15,7 @@ function LoginHeader({ authInfo, doLogin, doLogout }) {
         });
     };
     return (
-        <div>
+        <div className='login-area'>
             {authInfo.isLoggedIn ? (
                 <>
                     <div>{authInfo.loginId}번 사용자님 반갑습니다.</div>

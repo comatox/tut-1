@@ -1,11 +1,13 @@
 import { Link, Route } from 'react-router-dom';
 import './App.css';
+import LoginHeader from './ground/LoginHeader';
 import SampleList from './ground/SampleList';
 import SampleView from './ground/SampleView';
 
 function App() {
     return (
         <>
+            <LoginHeader />
             <ul>
                 <li>
                     <Link to='/samplelist'>SAMPLE LIST</Link>

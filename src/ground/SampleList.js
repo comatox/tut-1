@@ -1,7 +1,5 @@
 import Axios from 'axios';
 import React, { useEffect, useReducer, useState } from 'react';
-import { connect } from 'react-redux';
-import LoginAction, { authLoginFail, authLoginSuccess } from '../action/auth';
 import SampleListItem from './SampleListItem';
 
 const ACTION_LIST_ALL = 'sample/LIST_ALL';
@@ -56,7 +54,6 @@ function SampleList() {
     };
 
     const [state, dispatch] = useReducer(reducer, { list: [] });
-
     const loadList = async () => {
         try {
             const res = await Axios.get(
@@ -72,11 +69,12 @@ function SampleList() {
     }, []);
 
     const { list } = state;
-    const [postInfo, setPostInfo] = useState({
+    const initialStatePostInfo = {
         userId: '',
         title: '',
         body: '',
-    });
+    };
+    const [postInfo, setPostInfo] = useState(initialStatePostInfo);
     const handleChangeInputPostInfo = (e) => {
         const { name, value } = e.target;
         setPostInfo({
@@ -85,11 +83,7 @@ function SampleList() {
         });
     };
     const handleResetInputPostInfo = () => {
-        setPostInfo({
-            userId: '',
-            title: '',
-            body: '',
-        });
+        setPostInfo(initialStatePostInfo);
     };
 
     return (

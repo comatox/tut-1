@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import LoginAction from '../action/auth';
 
 function loginApi(loginId) {
