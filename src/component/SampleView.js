@@ -1,5 +1,6 @@
 import Axios from 'axios';
-import React, { useCallback, useEffect, useReducer } from 'react';
+import React, { useCallback, useEffect, useReducer, useState } from 'react';
+import { withRouter } from 'react-router-dom';
 
 const ACTION_VIEW_SUCCESS = 'sample/VIEW_SUCCESS';
 const actionViewSuccess = (item) => ({
@@ -16,7 +17,7 @@ const actionViewPending = () => ({
     type: ACTION_VIEW_PENDING,
 });
 
-function SampleView({ match }) {
+function SampleView({ match, history }) {
     const reducer = (state, action) => {
         switch (action.type) {
             case ACTION_VIEW_SUCCESS:
@@ -46,7 +47,7 @@ function SampleView({ match }) {
         loading: false,
         error: null,
     });
-    const { loading, item, error } = state;
+    const { loading, item } = state;
 
     const loadingItem = useCallback(async (id) => {
         dispatch(actionViewPending());
@@ -62,9 +63,13 @@ function SampleView({ match }) {
 
     useEffect(() => {
         const { id } = match.params;
-        loadingItem(id);
+        if (id !== undefined) {
+            loadingItem(id);
+        }
         return () => {};
     }, [match.params, loadingItem]);
+
+    const [postId, setPostId] = useState('');
 
     return (
         <div>
@@ -79,17 +84,35 @@ function SampleView({ match }) {
                     Loading
                 </div>
             ) : null}
-            {error !== null ? <div>error</div> : null}
-            {item !== null ? (
+            {item !== null && (
                 <div className='sample-item'>
-                    <div className='sample-item-content'>{item.userId}</div>
                     <div className='sample-item-content'>{item.id}</div>
+                    <div className='sample-item-content'>{item.userId}</div>
                     <div className='sample-item-content'>{item.title}</div>
                     <div className='sample-item-content'>{item.body}</div>
                 </div>
-            ) : null}
+            )}
+            {item === null && (
+                <div
+                    style={{
+                        textAlign: 'center',
+                    }}
+                >
+                    <div>post id를 지정해야 합니다.</div>
+                    <input
+                        name='postId'
+                        value={postId}
+                        onChange={(e) => setPostId(e.target.value)}
+                    />
+                    <button
+                        onClick={(e) => history.push(`/sampleview/${postId}`)}
+                    >
+                        이동
+                    </button>
+                </div>
+            )}
         </div>
     );
 }
 
-export default SampleView;
+export default withRouter(SampleView);

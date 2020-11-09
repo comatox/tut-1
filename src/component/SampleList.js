@@ -113,6 +113,13 @@ function SampleList() {
                     등록
                 </button>
             </div>
+            <div className='sample-item sample-item-header'>
+                <div className='sample-item-content'>user id</div>
+                <div className='sample-item-content'>post id</div>
+                <div className='sample-item-content'>title</div>
+                <div className='sample-item-content'>body</div>
+                <div className='sample-item-content'>삭제</div>
+            </div>
             {list.map((item) => (
                 <SampleListItem
                     key={item.id}
