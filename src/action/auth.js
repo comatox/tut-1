@@ -14,7 +14,10 @@ const authLoginSuccess = (userId) => ({
     type: AUTH_LOGIN_SUCCESS,
     payload: { userId },
 });
-const authLoginFail = () => ({ type: AUTH_LOGIN_FAIL });
+const authLoginFail = (error) => ({
+    type: AUTH_LOGIN_FAIL,
+    payload: { error },
+});
 const authLogout = () => ({ type: AUTH_LOGOUT });
 
 const LoginAction = {

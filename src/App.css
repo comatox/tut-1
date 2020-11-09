@@ -5,6 +5,9 @@ input {
     padding: 20px;
     text-align: right;
 }
+.login-error-message {
+    color: orangered;
+}
 .sample-container {
     border: 1px solid gray;
     text-align: center;

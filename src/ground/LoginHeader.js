@@ -48,6 +48,11 @@ function LoginHeader({ authInfo, doLogin, doLogout }) {
                     >
                         로그인
                     </button>
+                    {authInfo.error !== null && (
+                        <div className='login-error-message'>
+                            {authInfo.error}
+                        </div>
+                    )}
                 </>
             )}
         </div>
