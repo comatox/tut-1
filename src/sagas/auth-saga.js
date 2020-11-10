@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import LoginAction from '../action/auth';
+import { push } from 'connected-react-router';
 
 function loginApi(loginId) {
     return Axios.get(`https://jsonplaceholder.typicode.com/posts/${loginId}`);
@@ -21,6 +22,7 @@ function* login(action) {
                     '아이디 또는 비밀번호가 맞지 않습니다.'
                 )
             );
+            yield put(push('/sampleview'));
         }
     } catch (e) {
         yield put(

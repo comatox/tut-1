@@ -18,7 +18,8 @@ const actionListRemove = (key) => ({
     payload: key,
 });
 
-function SampleList() {
+function SampleList({ history }) {
+    console.log(history);
     const reducer = (state, action) => {
         switch (action.type) {
             case ACTION_LIST_ALL:
@@ -29,9 +30,9 @@ function SampleList() {
             case ACTION_LIST_ADD:
                 action.payload = {
                     ...action.payload,
+                    // state.list.reduce((a, b) => (a.id > b.id ? a.id : b.id)) + 1
                     id: (
                         Math.max.apply(
-                            // state.list.reduce((a, b) => (a.id > b.id ? a.id : b.id)) + 1
                             Math,
                             state.list.map((item) => item.id)
                         ) + 1
