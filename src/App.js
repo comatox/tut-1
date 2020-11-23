@@ -1,14 +1,14 @@
 import { Link, Route } from 'react-router-dom';
 import './App.css';
-import LoginHeader from './component/LoginHeader';
+import 'antd/dist/antd.css';
+import WrappedLoginHeader from './component/WrappedLoginHeader';
 import WrappedSamplelist from './component/SampleList';
-import SampleList from './component/SampleList';
 import SampleView from './component/SampleView';
 
 function App() {
   return (
     <>
-      <LoginHeader />
+      <WrappedLoginHeader />
       <ul>
         <li>
           <Link to="/samplelist">SAMPLE LIST</Link>

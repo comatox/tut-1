@@ -165,5 +165,4 @@ function SampleList({ history, form }) {
 }
 
 const WrappedSamplelist = Form.create({ name: 'form-samplelist' })(SampleList);
-
 export default WrappedSamplelist;
